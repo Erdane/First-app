@@ -1,5 +1,5 @@
-<template>
-  <v-container>
+<!--<template>
+  <!--<v-container>
     <v-layout
       text-center
       wrap
@@ -82,12 +82,23 @@
       </v-flex>
     </v-layout>
   </v-container>
-</template>
+  <!--<v-form v-model="valid">
+    <v-container>
+      <v-row>
+        <v-col cols="12" md="4">
+          <v-text-field v-model="firstname" :rules="nameRules" :counter="10" label="First name" required>
+          </v-text-field>
+        </v-col>
+      </v-row>
+
+    </v-container>
+  </v-form>
+</template>-->
 
 <script>
 export default {
   data: () => ({
-    ecosystem: [
+    /* ecosystem: [
       {
         text: 'vuetify-loader',
         href: 'https://github.com/vuetifyjs/vuetify-loader',
@@ -137,6 +148,13 @@ export default {
         href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
       },
     ],
-  }),
-};
+  }), */
+    cards: [
+      { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', srcback: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 12 },
+      { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', srcback: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 },
+      { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', srcback: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 },
+      { title: 'NFL', src: 'src/assets/nfl.jpg', srcback: 'src/assets/nfl_league.jpg', flex: 6 }
+    ]
+  })
+}
 </script>
