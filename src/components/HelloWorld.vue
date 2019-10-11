@@ -14,7 +14,13 @@
           </v-row>
           <v-btn @click="addElement">Ajouter</v-btn>
           <v-btn @click="login">Connexion</v-btn>
+          <v-btn @click="signup">Inscription</v-btn>
+          <v-btn @click="logout">Déconnexion</v-btn>
         </v-container>
+
+        <div>
+          Valid : {{valid}}
+        </div>
       </v-form>
       <v-card class="mx-auto" max-width="400" tile>
         <v-list-item v-for="(item, index) in todos" v-bind:key="item.id">
@@ -30,6 +36,18 @@
           </v-list-item-content>
         </v-list-item>
       </v-card>
+
+      <!-- <div class="post">
+    <div class="loading" v-if="loading" v-model="valid">
+      Chargement...
+    </div>
+    <div v-if="reponse" class="valid">
+      Reussi
+    </div>
+    <div v-else class="error">
+      Failed
+    </div>
+  </div> -->
     </v-layout>
   </v-container>
 </template>
@@ -41,18 +59,34 @@ export default {
     identifiant: '',
     password: '',
     todos: [],
+    reponse: '',
     url: 'http://localhost:4000' // 'http://localhost:4000'
   }),
+
   methods: {
     async login () {
       // connecter l'utilisateur
       const response = await this.axios.post(this.url + '/api/login', {
         login: this.identifiant,
         password: this.password
+        // valid: true
       })
       console.log('response is:', response)
     },
-    logout () {
+
+    async signup () {
+      // connecter l'utilisateur
+      const newuser = await this.axios.post(this.url + '/api/signup', {
+        username: this.identifiant,
+        password: this.password
+        // valid: true
+      })
+      console.log('New user is:', newuser)
+    },
+
+    async logout () {
+      const logout = await this.axios.post(this.url + '/api/logout')
+      console.log(logout)
     },
     addElement () {
       this.todos.push({

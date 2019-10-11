@@ -32,7 +32,7 @@ app.use(bodyParser.json())
 const path = require('path')
 app.use(express.static(path.join(__dirname, '/dist')))
 
-const users = [{
+var users = [{
   username: 'admin',
   password: 'changethispassword'
 }]
@@ -48,6 +48,23 @@ app.get('/api/test', (req, res) => {
       content: 'machin2'
     }
   ])
+})
+app.post('/api/signup', (req, res) => {
+  console.log('req.body', req.body)
+  console.log('req.query', req.query)
+
+  users.push({
+    username: req.body.username,
+    password: req.body.password
+  })
+
+  res.status(200)
+  res.json({
+    message: 'Nouvel utilisateur',
+    lengthUsers: users.length
+  })
+  console.log('Users after sign up : ', users)
+  return users
 })
 
 app.post('/api/login', (req, res) => {
@@ -74,6 +91,7 @@ app.post('/api/login', (req, res) => {
       message: 'you are already connected'
     })
   }
+  console.log('Users after login : ', users)
 })
 
 app.get('/api/logout', (req, res) => {
