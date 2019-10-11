@@ -1,5 +1,112 @@
+<template>
+  <v-container>
+    <v-layout text-center wrap>
+      <v-form v-model="valid">
+        <v-container>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="identifiant" label="Identifiant" required></v-text-field>
+            </v-col>
+
+            <v-col cols="12" md="4">
+              <v-text-field v-model="password" label="Password" required></v-text-field>
+            </v-col>
+          </v-row>
+          <v-btn @click="addElement">Ajouter</v-btn>
+          <v-btn @click="login">Connexion</v-btn>
+          <v-btn @click="signup">Inscription</v-btn>
+          <v-btn @click="logout">Déconnexion</v-btn>
+        </v-container>
+
+        <div>
+          Valid : {{valid}}
+        </div>
+      </v-form>
+      <v-card class="mx-auto" max-width="400" tile>
+        <v-list-item v-for="(item, index) in todos" v-bind:key="item.id">
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ item.identifiant }}
+              {{ item.password }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ item.password }}
+              <v-btn @click="rmElement(index)">Remove</v-btn>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
+
+      <!-- <div class="post">
+    <div class="loading" v-if="loading" v-model="valid">
+      Chargement...
+    </div>
+    <div v-if="reponse" class="valid">
+      Reussi
+    </div>
+    <div v-else class="error">
+      Failed
+    </div>
+  </div> -->
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    valid: false,
+    identifiant: '',
+    password: '',
+    todos: [],
+    reponse: '',
+    url: 'http://localhost:4000' // 'http://localhost:4000'
+  }),
+
+  methods: {
+    async login () {
+      // connecter l'utilisateur
+      const response = await this.axios.post(this.url + '/api/login', {
+        login: this.identifiant,
+        password: this.password
+        // valid: true
+      })
+      console.log('response is:', response)
+    },
+
+    async signup () {
+      // connecter l'utilisateur
+      const newuser = await this.axios.post(this.url + '/api/signup', {
+        username: this.identifiant,
+        password: this.password
+        // valid: true
+      })
+      console.log('New user is:', newuser)
+    },
+
+    async logout () {
+      const logout = await this.axios.post(this.url + '/api/logout')
+      console.log(logout)
+    },
+    addElement () {
+      this.todos.push({
+        id: this.todos.length,
+        identifiant: this.identifiant,
+        password: this.password
+      })
+      console.log('ajouté !')
+    },
+    rmElement (index) {
+      console.log('index', index)
+      this.todos.splice(index, 1)
+    }
+  }
+}
+</script>
+
+<!-------------------------------------------------------------------------------------------------------------->
 <!--<template>
-  <!--<v-container>
+  <v-container>
     <v-layout
       text-center
       wrap
@@ -82,6 +189,7 @@
       </v-flex>
     </v-layout>
   </v-container>
+
   <!--<v-form v-model="valid">
     <v-container>
       <v-row>
@@ -93,11 +201,17 @@
 
     </v-container>
   </v-form>
-</template>-->
+</template>
 
-<script>
-export default {
-  data: () => ({
+  <script>
+// export default {
+  // this.axios.post('https://localhost:4000/votreAPI', {
+  //   sivousavezdeschamps: 'rentrez les ici'
+  // })
+  // .then((response) => {
+  //   console.log('response', response)
+  // })
+  // data: () => ({
     /* ecosystem: [
       {
         text: 'vuetify-loader',
@@ -149,12 +263,45 @@ export default {
       },
     ],
   }), */
-    cards: [
+
+    /* cards: [
       { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', srcback: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 12 },
       { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', srcback: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 },
       { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', srcback: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 },
       { title: 'NFL', src: 'src/assets/nfl.jpg', srcback: 'src/assets/nfl_league.jpg', flex: 6 }
-    ]
-  })
-}
-</script>
+    ] */
+//     valid: false,
+//     name: '',
+//     description: '',
+//     todos: [],
+//     url: '' // 'http://localhost:4000'
+//   }),
+//   methods: {
+//     async login () {
+//       // connecter l'utilisateur
+//       const response = await this.axios.post(this.url + '/api/login', {
+//         login: 'admin',
+//         password: 'changethispassword'
+//       })
+//       console.log('response is:', response)
+//     },
+//     logout () {
+//     },
+//     addElement () {
+//       this.todos.push({
+//         id: this.todos.length,
+//         name: this.name,
+//         description: this.description
+//       })
+//       console.log('ajouté !')
+//     },
+//     rmElement (index) {
+//       console.log('index', index)
+//       this.todos.splice(index, 1)
+//     }
+//   }
+// }
+
+// </script>
+// eslint-disable-next-line vue/no-parsing-error
+-->
