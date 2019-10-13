@@ -1,6 +1,28 @@
-<template>
+<template >
   <v-container>
-    <v-layout text-center wrap>
+    <v-system-bar color="indigo darken-2"></v-system-bar>
+
+    <v-toolbar
+      color="indigo"
+      dark
+    >
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Discover</v-toolbar-title>
+
+      <div class="flex-grow-1"></div>
+      <v-btn icon @click="logout" >Deconnexion
+        <v-icon>mdi-cancel</v-icon>
+      </v-btn>
+     </v-toolbar>
+    <template v-if="!valid">
+    <v-content>
+      <Game/>
+    </v-content>
+    </template>
+    <template v-else>
+      <v-content>
+      <v-layout text-center wrap>
       <v-form v-model="valid">
         <v-container>
           <v-row>
@@ -12,15 +34,9 @@
               <v-text-field v-model="password" label="Password" required></v-text-field>
             </v-col>
           </v-row>
-          <v-btn @click="addElement">Ajouter</v-btn>
           <v-btn @click="login">Connexion</v-btn>
           <v-btn @click="signup">Inscription</v-btn>
-          <v-btn @click="logout">Déconnexion</v-btn>
         </v-container>
-
-        <div>
-          Valid : {{valid}}
-        </div>
       </v-form>
       <v-card class="mx-auto" max-width="400" tile>
         <v-list-item v-for="(item, index) in todos" v-bind:key="item.id">
@@ -36,41 +52,44 @@
           </v-list-item-content>
         </v-list-item>
       </v-card>
-
-      <!-- <div class="post">
-    <div class="loading" v-if="loading" v-model="valid">
-      Chargement...
-    </div>
-    <div v-if="reponse" class="valid">
-      Reussi
-    </div>
-    <div v-else class="error">
-      Failed
-    </div>
-  </div> -->
     </v-layout>
+    </v-content>
+    </template>
   </v-container>
+
 </template>
 
 <script>
+import Game from './Game'
+
 export default {
+  components: {
+    Game
+  },
+
   data: () => ({
-    valid: false,
+    valid: true,
     identifiant: '',
     password: '',
     todos: [],
     reponse: '',
     url: 'http://localhost:4000' // 'http://localhost:4000'
   }),
-
   methods: {
     async login () {
       // connecter l'utilisateur
+
+      console.log('Valid :', this.valid)
+
       const response = await this.axios.post(this.url + '/api/login', {
         login: this.identifiant,
         password: this.password
-        // valid: true
       })
+      console.log('reponse status :', response.status)
+      if (response.status === 200) {
+        this.valid = !this.valid
+        console.log('valid if: ', this.valid)
+      }
       console.log('response is:', response)
     },
 
@@ -79,13 +98,13 @@ export default {
       const newuser = await this.axios.post(this.url + '/api/signup', {
         username: this.identifiant,
         password: this.password
-        // valid: true
       })
       console.log('New user is:', newuser)
     },
 
     async logout () {
-      const logout = await this.axios.post(this.url + '/api/logout')
+      const logout = await this.axios.get(this.url + '/api/logout')
+      this.valid = !this.valid
       console.log(logout)
     },
     addElement () {
@@ -190,7 +209,7 @@ export default {
     </v-layout>
   </v-container>
 
-  <!--<v-form v-model="valid">
+  <v-form v-model="valid">
     <v-container>
       <v-row>
         <v-col cols="12" md="4">
