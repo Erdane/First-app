@@ -15,7 +15,7 @@
         <v-icon>mdi-cancel</v-icon>
       </v-btn>
      </v-toolbar>
-    <template v-if="!valid">
+    <template v-if="isconnected">
     <v-content>
       <Game/>
     </v-content>
@@ -34,8 +34,8 @@
               <v-text-field v-model="password" label="Password" required></v-text-field>
             </v-col>
           </v-row>
-          <v-btn @click="login">Connexion</v-btn>
-          <v-btn @click="signup">Inscription</v-btn>
+          <v-btn rounded color="deep-purple accent-4" @click="login" dark>Connexion</v-btn>
+          <v-btn rounded @click="signup">Inscription</v-btn>
         </v-container>
       </v-form>
       <v-card class="mx-auto" max-width="400" tile>
@@ -68,7 +68,8 @@ export default {
   },
 
   data: () => ({
-    valid: true,
+    valid: false,
+    isconnected: false,
     identifiant: '',
     password: '',
     todos: [],
@@ -87,7 +88,7 @@ export default {
       })
       console.log('reponse status :', response.status)
       if (response.status === 200) {
-        this.valid = !this.valid
+        this.isconnected = true
         console.log('valid if: ', this.valid)
       }
       console.log('response is:', response)
@@ -104,7 +105,7 @@ export default {
 
     async logout () {
       const logout = await this.axios.get(this.url + '/api/logout')
-      this.valid = !this.valid
+      this.isconnected = false
       console.log(logout)
     },
     addElement () {
