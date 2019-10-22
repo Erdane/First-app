@@ -9,10 +9,11 @@
       <v-spacer></v-spacer>
       <v-btn
         text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
+        @click="logout"
       >
-        <span class="mr-2">Latest Release</span>
+      <!-- href="https://github.com/vuetifyjs/vuetify/releases/latest" -->
+      <span class="mr-2">Deconnexion</span>
       </v-btn>
     </v-app-bar>
 
@@ -37,12 +38,14 @@
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import Game from './components/Game'
 import VueFlip from 'vue-flip'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
+    Game,
     'vue-flip': VueFlip
   },
   data: () => ({
@@ -66,31 +69,14 @@ export default {
     name: '',
     description: '',
     todos: [],
-    url: '' // 'http://localhost:4000'
+    url: 'http://localhost:4000' // 'http://localhost:4000'
   }),
   methods: {
-    async login () {
-      // connecter l'utilisateur
-      const response = await this.axios.post(this.url + '/api/login', {
-        login: 'admin',
-        password: 'changethispassword'
-      })
-      console.log('response is:', response)
-    },
-    logout () {
+    async logout () {
       // deconnecter l'utilisateur
-    },
-    addElement () {
-      this.todos.push({
-        id: this.todos.length,
-        name: this.name,
-        description: this.description
-      })
-      console.log('ajouté !')
-    },
-    rmElement (index) {
-      console.log('index', index)
-      this.todos.splice(index, 1)
+      const logout = await this.axios.get(this.url + '/api/logout')
+      this.valid = !this.valid
+      console.log(logout)
     }
   }
 }
