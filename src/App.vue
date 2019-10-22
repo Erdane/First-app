@@ -4,17 +4,15 @@
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span class="font-weight-light justify-center">MEMORY</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
+      <!-- <v-btn
         text
-        target="_blank"
-        @click="logout"
-      >
-      <!-- href="https://github.com/vuetifyjs/vuetify/releases/latest" -->
+        target="_blank">
+      <!-- href="https://github.com/vuetifyjs/vuetify/releases/latest" 
       <span class="mr-2">Deconnexion</span>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
 
     <v-content>

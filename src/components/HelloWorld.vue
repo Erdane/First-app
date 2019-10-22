@@ -1,6 +1,6 @@
 <template >
-  <v-container>
-    <v-system-bar color="indigo darken-2"></v-system-bar>
+<v-container>
+    <!-- <v-system-bar color="indigo darken-2"></v-system-bar> -->
 
     <v-toolbar
       color="indigo"
@@ -9,9 +9,9 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
       <v-toolbar-title>Discover</v-toolbar-title>
-
-      <div class="flex-grow-1"></div>
-      <v-btn icon @click="logout" >Deconnexion
+      <v-spacer></v-spacer>
+      <!-- <div class="flex-grow-1"></div> -->
+      <v-btn text @click="logout" >Deconnexion
         <v-icon>mdi-cancel</v-icon>
       </v-btn>
      </v-toolbar>
@@ -26,16 +26,22 @@
       <v-form v-model="valid">
         <v-container>
           <v-row>
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="10">
               <v-text-field v-model="identifiant" label="Identifiant" required></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="4">
-              <v-text-field v-model="password" label="Password" required></v-text-field>
+            <v-col cols="12" md="10">
+              <v-text-field v-model="password" label="Password"
+              :append-icon="show1 ? 'visibility' : 'visibility_off'"
+              :type="show1 ? 'text' : 'password'"
+              @click:append="show1 = !show1"
+              required></v-text-field>
             </v-col>
           </v-row>
+          <v-col cols="12" md="10">
           <v-btn rounded color="deep-purple accent-4" @click="login" dark>Connexion</v-btn>
-          <v-btn rounded @click="signup">Inscription</v-btn>
+            <v-btn rounded @click="signup">Inscription</v-btn>
+          </v-col>
         </v-container>
       </v-form>
       <v-card class="mx-auto" max-width="400" tile>
@@ -55,7 +61,7 @@
     </v-layout>
     </v-content>
     </template>
-  </v-container>
+</v-container>
 
 </template>
 
@@ -70,6 +76,7 @@ export default {
   data: () => ({
     valid: false,
     isconnected: false,
+    show1: false,
     identifiant: '',
     password: '',
     todos: [],
@@ -90,6 +97,9 @@ export default {
       if (response.status === 200) {
         this.isconnected = true
         console.log('valid if: ', this.valid)
+        // Permet de vider le champs de texte après connexion
+        this.password = ''
+        this.identifiant = ''
       }
       console.log('response is:', response)
     },
