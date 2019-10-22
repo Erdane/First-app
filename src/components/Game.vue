@@ -21,14 +21,14 @@
                   class="white--text"
                   height="200px"
                   gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-          ></v-img>
+           aspect-ratio="1.7" contain></v-img>
         </div>
         <div slot="back">
           <v-img :src= card.srcback
                 class="white--text"
                   height="200px"
                   gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-          ></v-img>
+          aspect-ratio="1.7"></v-img>
           </div>
       </vue-flip>
         </v-col>
