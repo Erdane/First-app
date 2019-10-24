@@ -1,5 +1,5 @@
 <template >
-<v-container>
+<v-container >
     <!-- <v-system-bar color="indigo darken-2"></v-system-bar> -->
 
     <v-toolbar
@@ -35,6 +35,7 @@
               :append-icon="show1 ? 'visibility' : 'visibility_off'"
               :type="show1 ? 'text' : 'password'"
               @click:append="show1 = !show1"
+              @keypress.enter="login"
               required></v-text-field>
             </v-col>
           </v-row>
@@ -81,7 +82,7 @@ export default {
     password: '',
     todos: [],
     reponse: '',
-    url: 'http://localhost:4000' // 'http://localhost:4000'
+    url: 'http://localhost:4000', // 'http://localhost:4000'
   }),
   methods: {
     async login () {
