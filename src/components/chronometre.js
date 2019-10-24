@@ -1,49 +1,57 @@
-var centi = 0
-var sec = 0
-var min = 0
-var h = 0
-var loc
-var compt = 0
-
+var startTime = 0
+var start = 0
+var end = 0
+var diff = 0
+var timerID = 0
+window.onload = chronoStart
 function chrono () {
-  centi++
-  centi = centi * 10//= ======pour passer en dixièmes de sec
-  //= == on remet à zéro quand on passe à 1seconde, 1min, 1heure, 1jour
-  if (centi > 9) {
-    centi = 0
-    sec++
-  }
-
-  if (sec > 59) {
-    sec = 0
-    min++
-  }
-
-  if (min > 59) {
-    min = 0
-    h++
-  }
-
-  //= =====
-
-  //= =============== On ajoute un zero pour avoir 1h01:05sec
-
-  if (sec < 10) {
-    var sec_ = '0' + sec
-  } else {
-    sec_ = sec
-  }
-
+  end = new Date()
+  diff = end - start
+  diff = new Date(diff)
+  var msec = diff.getMilliseconds()
+  var sec = diff.getSeconds()
+  var min = diff.getMinutes()
+  var hr = diff.getHours() - 1
   if (min < 10) {
-    var min_ = '0' + min
-  } else {
-    min_ = min
+    min = '0' + min
   }
-  //= ==============
-
-  var loc = h + ':' + min_ + ':' + sec_ + ':' + centi
-  //= ================ Pour que cela s'affiche dans l'élément "time"
-  document.getElementById('time').innerHTML = loc
-  //= ================lancement du chrono
-  reglage = window.setTimeout(chrono(), 100)
+  if (sec < 10) {
+    sec = '0' + sec
+  }
+  if (msec < 10) {
+    msec = '00' + msec
+  } else if (msec < 100) {
+    msec = '0' + msec
+  }
+  document.getElementById('chronotime').value = hr + ':' + min + ':' + sec + ':' + msec
+  timerID = setTimeout(chrono(), 10)
+}
+function chronoStart () {
+  document.chronoForm.startstop.value = 'stop!'
+  document.chronoForm.startstop.onclick = chronoStop
+  document.chronoForm.reset.onclick = chronoReset
+  start = new Date()
+  chrono()
+}
+function chronoContinue () {
+  document.chronoForm.startstop.value = 'stop!'
+  document.chronoForm.startstop.onclick = chronoStop
+  document.chronoForm.reset.onclick = chronoReset
+  start = new Date() - diff
+  start = new Date(start)
+  chrono()
+}
+function chronoReset () {
+  document.getElementById('chronotime').value = '0:00:00:000'
+  start = new Date()
+}
+function chronoStopReset () {
+  document.getElementById('chronotime').value = '0:00:00:000'
+  document.chronoForm.startstop.onclick = chronoStart
+}
+function chronoStop () {
+  document.chronoForm.startstop.value = 'start!'
+  document.chronoForm.startstop.onclick = chronoContinue
+  document.chronoForm.reset.onclick = chronoStopReset
+  clearTimeout(timerID)
 }
