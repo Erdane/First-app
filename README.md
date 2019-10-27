@@ -1,4 +1,4 @@
-# first-app
+# Memory
 
 ## Project setup
 ```
@@ -14,16 +14,27 @@ npm run serve
 ```
 npm run build
 ```
-
-### Run your tests
+### Start node serveur
 ```
-npm run test
+node serveur.js
 ```
-
-### Lints and fixes files
+or
 ```
-npm run lint
+nodemon serveur.js
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Game
+
+Pour commencer jouer il faut tout d'abord se connecter :
+(METTRE UNE IMAGE)
+
+Si c'est la première connexion, vous pouvez vous inscrire.
+Entrez alors votre pseudo et votre mot de passe dans les champs de texte.
+
+Sur cette page vous trouverez une aide afin de connaitre les objectifs du jeu.
+
+(AFFICHER DES MESSAGES SI LUTILISATEUR EST DEJA CONNECTER OU PAS DANS LA BASE)
+
+Lors de la connexion, vous serez alors redirigé vers le jeu.
+
+
