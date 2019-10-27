@@ -44,7 +44,28 @@
           </v-col>
         </v-container>
       </v-form>
-      <v-card class="mx-auto" max-width="400" tile>
+      <v-card
+    class="mx-auto"
+    max-width="344"
+  >
+    <v-card-text>
+      <p class="display-1 text--primary">
+        Memory
+      </p>
+      <div class="text--primary">
+        Objectif :
+      </div>
+      <p> Trouve toutes les paires</p>
+
+      <div class="text--primary">
+        Comment faire ?
+      </div>
+      <p> Clique sur deux cartes de ton choix</p>
+    </v-card-text>
+    <v-card-actions>
+    </v-card-actions>
+  </v-card>
+      <!-- <v-card class="mx-auto" max-width="400" tile>
         <v-list-item v-for="(item, index) in todos" v-bind:key="item.id">
           <v-list-item-content>
             <v-list-item-title>
@@ -57,7 +78,7 @@
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-      </v-card>
+      </v-card> -->
     </v-layout>
     </v-content>
     </template>
