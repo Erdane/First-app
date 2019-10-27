@@ -18,6 +18,20 @@
     <template v-if="isconnected">
     <v-content>
       <Game/>
+      <div class="text-center ma-2">
+    <v-snackbar
+      v-model="snackbar"
+    >
+      {{ text }}
+      <v-btn
+        color="pink"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
+  </div>
     </v-content>
     </template>
     <template v-else>
@@ -82,7 +96,9 @@ export default {
     password: '',
     todos: [],
     reponse: '',
-    url: 'http://localhost:4000', // 'http://localhost:4000'
+    url: 'http://localhost:4000',
+    snackbar: true,
+    text: ''
   }),
   methods: {
     async login () {
@@ -101,8 +117,9 @@ export default {
         // Permet de vider le champs de texte après connexion
         this.password = ''
         this.identifiant = ''
+        this.text = response.data.message
       }
-      console.log('response is:', response)
+      //console.log('response is:', response)
     },
 
     async signup () {
