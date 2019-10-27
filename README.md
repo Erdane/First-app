@@ -36,5 +36,6 @@ Sur cette page vous trouverez une aide afin de connaitre les objectifs du jeu.
 (AFFICHER DES MESSAGES SI LUTILISATEUR EST DEJA CONNECTER OU PAS DANS LA BASE)
 
 Lors de la connexion, vous serez alors redirigé vers le jeu.
+(METTRE UN OVERLAY POUR COMMENCER)
 
 
