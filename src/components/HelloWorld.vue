@@ -3,7 +3,7 @@
     <!-- <v-system-bar color="indigo darken-2"></v-system-bar> -->
 
     <v-toolbar
-      color="indigo"
+      color="deep-purple accent-4"
       dark
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
