@@ -1,6 +1,11 @@
  <!--<template>-->
 <template v-for="card in cards">
   <v-app>
+    <form name="chronoForm">
+      <input type="text" name="chronotime" id="chronotime" value="0:00:00:00"/>
+      <input type="button" name="startstop" value="start!" @click="chronoStart()"  />
+    <input type="button" name="reset" value="reset!" @click="chronoReset()" />
+</form>
   <v-card
     class="mx-auto"
     max-width="auto"
@@ -48,7 +53,11 @@ export default {
     'vue-flip': VueFlip
   },
   data: () => ({
-    // VIDE INITIALEMENT<<
+    startTime: 0,
+    start: 0,
+    end: 0,
+    diff: 0,
+    timerID: 0,
     cards: [
       { title: 'Pre-fab homes', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
       { title: 'Favorite road trips', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
@@ -63,6 +72,62 @@ export default {
       { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/logo.svg'), flex: 2 },
       { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/logo.svg'), flex: 2 }
     ]
-  })
+  }),
+  methods: {
+    chrono () {
+      this.end = new Date()
+      this.diff = this.end - this.start
+      this.diff = new Date(this.diff)
+      var msec = this.diff.getMilliseconds()
+      var sec = this.diff.getSeconds()
+      var min = this.diff.getMinutes()
+      var hr = this.diff.getHours() - 1
+      if (min < 10) {
+        min = '0' + min
+      }
+      if (sec < 10) {
+        sec = '0' + sec
+      }
+      if (msec < 10) {
+        msec = '00' + msec
+      } else if (msec < 100) {
+        msec = '0' + msec
+      }
+      document.getElementById('chronotime').value = hr + ':' + min + ':' + sec + ':' + msec
+      this.timerID = setTimeout(this.chrono(), 10000)
+    },
+    chronoStart () {
+      document.chronoForm.startstop.value = 'stop!'
+      document.chronoForm.startstop.onclick = this.chronoStop
+      document.chronoForm.reset.onclick = this.chronoReset
+      this.start = new Date()
+      this.chrono()
+    },
+    chronoContinue () {
+      document.chronoForm.startstop.value = 'stop!'
+      document.chronoForm.startstop.onclick = this.chronoStop
+      document.chronoForm.reset.onclick = this.chronoReset
+      this.start = new Date() - this.diff
+      this.start = new Date(this.start)
+      this.chrono()
+    },
+    chronoReset () {
+      document.getElementById('chronotime').value = '0:00:00:000'
+      this.start = new Date()
+    },
+    chronoStopReset () {
+      document.getElementById('chronotime').value = '0:00:00:000'
+      document.chronoForm.startstop.onclick = this.chronoStart
+    },
+    chronoStop () {
+      document.chronoForm.startstop.value = 'start!'
+      document.chronoForm.startstop.onclick = this.chronoContinue
+      document.chronoForm.reset.onclick = this.chronoStopReset
+      clearTimeout(this.timerID)
+    }
+  },
+  mounted () {
+    this.chronoStart()
+  }
 }
 </script>

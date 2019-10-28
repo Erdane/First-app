@@ -82,13 +82,13 @@ app.post('/api/login', (req, res) => {
       // connect the user
       req.session.userId = 1000 // connect the user, and change the id
       res.json({
-        message: 'connected'
+        message: ('connected as ' + req.body.login)
       })
     }
   } else {
     res.status(401)
     res.json({
-      message: 'you are already connected'
+      message: ('you are already connected as ' + req.body.login)
     })
   }
   console.log('Users after login : ', users)

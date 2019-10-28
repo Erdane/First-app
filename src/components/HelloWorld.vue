@@ -1,9 +1,9 @@
 <template >
-<v-container>
+<v-container >
     <!-- <v-system-bar color="indigo darken-2"></v-system-bar> -->
 
     <v-toolbar
-      color="indigo"
+      color="deep-purple accent-4"
       dark
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
@@ -18,6 +18,20 @@
     <template v-if="isconnected">
     <v-content>
       <Game/>
+      <div class="text-center ma-2">
+    <v-snackbar
+      v-model="snackbar"
+    >
+      {{ text }}
+      <v-btn
+        color="pink"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
+  </div>
     </v-content>
     </template>
     <template v-else>
@@ -35,6 +49,7 @@
               :append-icon="show1 ? 'visibility' : 'visibility_off'"
               :type="show1 ? 'text' : 'password'"
               @click:append="show1 = !show1"
+              @keypress.enter="login"
               required></v-text-field>
             </v-col>
           </v-row>
@@ -102,7 +117,9 @@ export default {
     password: '',
     todos: [],
     reponse: '',
-    url: 'http://localhost:4000' // 'http://localhost:4000'
+    url: 'http://localhost:4000',
+    snackbar: true,
+    text: ''
   }),
   methods: {
     async login () {
@@ -121,8 +138,9 @@ export default {
         // Permet de vider le champs de texte après connexion
         this.password = ''
         this.identifiant = ''
+        this.text = response.data.message
       }
-      console.log('response is:', response)
+      //console.log('response is:', response)
     },
 
     async signup () {
