@@ -1,7 +1,19 @@
 <template >
 <v-container >
     <!-- <v-system-bar color="indigo darken-2"></v-system-bar> -->
-
+    <v-snackbar
+      v-model="snackbar"
+      v-if="text"
+    >
+      {{ text }}
+      <v-btn
+        color="pink"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+       </v-snackbar>
     <v-toolbar
       color="deep-purple accent-4"
       dark
@@ -19,18 +31,8 @@
     <v-content>
       <Game/>
       <div class="text-center ma-2">
-    <v-snackbar
-      v-model="snackbar"
-    >
-      {{ text }}
-      <v-btn
-        color="pink"
-        text
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
+    
+   
   </div>
     </v-content>
     </template>
@@ -155,6 +157,7 @@ export default {
     async logout () {
       const logout = await this.axios.get(this.url + '/api/logout')
       this.isconnected = false
+      this.text = logout.data.message
       console.log(logout)
     },
     addElement () {
