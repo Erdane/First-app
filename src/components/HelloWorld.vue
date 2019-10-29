@@ -1,19 +1,7 @@
 <template >
 <v-container >
     <!-- <v-system-bar color="indigo darken-2"></v-system-bar> -->
-    <v-snackbar
-      v-model="snackbar"
-      v-if="text"
-    >
-      {{ text }}
-      <v-btn
-        color="pink"
-        text
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-       </v-snackbar>
+
     <v-toolbar
       color="deep-purple accent-4"
       dark
@@ -29,11 +17,16 @@
      </v-toolbar>
     <template v-if="isconnected">
     <v-content>
+      <v-alert
+    type="success"
+      v-model="snackbar"
+      v-if="text"
+      transition="scale-transition"
+      border="left"
+    dismissible>
+      {{ text }}
+    </v-alert>
       <Game/>
-      <div class="text-center ma-2">
-    
-   
-  </div>
     </v-content>
     </template>
     <template v-else>
@@ -98,6 +91,15 @@
       </v-card> -->
     </v-layout>
     </v-content>
+    <v-alert
+    type="success"
+      v-model="snackbar"
+      v-if="text"
+      transition="scale-transition"
+      border="left"
+    dismissible>
+      {{ text }}
+    </v-alert>
     </template>
 </v-container>
 
@@ -126,9 +128,6 @@ export default {
   methods: {
     async login () {
       // connecter l'utilisateur
-
-      console.log('Valid :', this.valid)
-
       const response = await this.axios.post(this.url + '/api/login', {
         login: this.identifiant,
         password: this.password
@@ -136,13 +135,15 @@ export default {
       console.log('reponse status :', response.status)
       if (response.status === 200) {
         this.isconnected = true
-        console.log('valid if: ', this.valid)
         // Permet de vider le champs de texte après connexion
         this.password = ''
         this.identifiant = ''
-        this.text = response.data.message
       }
-      //console.log('response is:', response)
+      // console.log('response is:', response)
+      this.text = response.data.message
+      setTimeout(() => {
+        this.text = ''
+      }, 3000)
     },
 
     async signup () {
@@ -151,7 +152,11 @@ export default {
         username: this.identifiant,
         password: this.password
       })
+      this.text = newuser.data.message
       console.log('New user is:', newuser)
+      setTimeout(() => {
+        this.text = ''
+      }, 3000)
     },
 
     async logout () {
@@ -159,6 +164,9 @@ export default {
       this.isconnected = false
       this.text = logout.data.message
       console.log(logout)
+      setTimeout(() => {
+        this.text = ''
+      }, 3000)
     },
     addElement () {
       this.todos.push({
