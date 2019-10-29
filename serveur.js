@@ -82,13 +82,13 @@ app.post('/api/login', (req, res) => {
       // connect the user
       req.session.userId = 1000 // connect the user, and change the id
       res.json({
-        message: 'connected'
+        message: ('Connected as ' + req.body.login)
       })
     }
   } else {
     res.status(401)
     res.json({
-      message: 'you are already connected'
+      message: ('You are already connected as ' + req.body.login)
     })
   }
   console.log('Users after login : ', users)
@@ -98,12 +98,12 @@ app.get('/api/logout', (req, res) => {
   if (!req.session.userId) {
     res.status(401)
     res.json({
-      message: 'you are already disconnected'
+      message: 'You are already disconnected'
     })
   } else {
     req.session.userId = 0
     res.json({
-      message: 'you are now disconnected'
+      message: 'You are now disconnected'
     })
   }
 })

@@ -1,9 +1,9 @@
 <template >
-<v-container>
+<v-container >
     <!-- <v-system-bar color="indigo darken-2"></v-system-bar> -->
 
     <v-toolbar
-      color="indigo"
+      color="deep-purple accent-4"
       dark
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
@@ -17,6 +17,15 @@
      </v-toolbar>
     <template v-if="isconnected">
     <v-content>
+      <v-alert
+    type="success"
+      v-model="snackbar"
+      v-if="text"
+      transition="scale-transition"
+      border="left"
+    dismissible>
+      {{ text }}
+    </v-alert>
       <Game/>
     </v-content>
     </template>
@@ -35,6 +44,7 @@
               :append-icon="show1 ? 'visibility' : 'visibility_off'"
               :type="show1 ? 'text' : 'password'"
               @click:append="show1 = !show1"
+              @keypress.enter="login"
               required></v-text-field>
             </v-col>
           </v-row>
@@ -44,7 +54,28 @@
           </v-col>
         </v-container>
       </v-form>
-      <v-card class="mx-auto" max-width="400" tile>
+      <v-card
+    class="mx-auto"
+    max-width="344"
+  >
+    <v-card-text>
+      <p class="display-1 text--primary">
+        Memory
+      </p>
+      <div class="text--primary">
+        Objectif :
+      </div>
+      <p> Trouve toutes les paires</p>
+
+      <div class="text--primary">
+        Comment faire ?
+      </div>
+      <p> Clique sur deux cartes de ton choix</p>
+    </v-card-text>
+    <v-card-actions>
+    </v-card-actions>
+  </v-card>
+      <!-- <v-card class="mx-auto" max-width="400" tile>
         <v-list-item v-for="(item, index) in todos" v-bind:key="item.id">
           <v-list-item-content>
             <v-list-item-title>
@@ -57,9 +88,18 @@
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-      </v-card>
+      </v-card> -->
     </v-layout>
     </v-content>
+    <v-alert
+    type="success"
+      v-model="snackbar"
+      v-if="text"
+      transition="scale-transition"
+      border="left"
+    dismissible>
+      {{ text }}
+    </v-alert>
     </template>
 </v-container>
 
@@ -81,14 +121,13 @@ export default {
     password: '',
     todos: [],
     reponse: '',
-    url: 'http://localhost:4000' // 'http://localhost:4000'
+    url: 'http://localhost:4000',
+    snackbar: true,
+    text: ''
   }),
   methods: {
     async login () {
       // connecter l'utilisateur
-
-      console.log('Valid :', this.valid)
-
       const response = await this.axios.post(this.url + '/api/login', {
         login: this.identifiant,
         password: this.password
@@ -96,12 +135,15 @@ export default {
       console.log('reponse status :', response.status)
       if (response.status === 200) {
         this.isconnected = true
-        console.log('valid if: ', this.valid)
         // Permet de vider le champs de texte après connexion
         this.password = ''
         this.identifiant = ''
       }
-      console.log('response is:', response)
+      // console.log('response is:', response)
+      this.text = response.data.message
+      setTimeout(() => {
+        this.text = ''
+      }, 3000)
     },
 
     async signup () {
@@ -110,13 +152,21 @@ export default {
         username: this.identifiant,
         password: this.password
       })
+      this.text = newuser.data.message
       console.log('New user is:', newuser)
+      setTimeout(() => {
+        this.text = ''
+      }, 3000)
     },
 
     async logout () {
       const logout = await this.axios.get(this.url + '/api/logout')
       this.isconnected = false
+      this.text = logout.data.message
       console.log(logout)
+      setTimeout(() => {
+        this.text = ''
+      }, 3000)
     },
     addElement () {
       this.todos.push({
