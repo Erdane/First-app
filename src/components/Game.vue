@@ -33,6 +33,7 @@
           :cols="card.flex"
         >
            <vue-flip :active-click="true" width="200px" height="200px" class="simple-test" align="center" justify="center">
+             {{CodeJeu}}
           <div slot="front">
               <v-img :src= card.src
                   class="white--text"
@@ -60,7 +61,8 @@
 
 <script>
 import VueFlip from 'vue-flip'
-import func from '../../vue-temp/vue-editor-bridge'
+// eslint-disable-next-line no-unused-vars
+// import func from '../../vue-temp/vue-editor-bridge'
 
 export default {
   name: 'App',
@@ -153,6 +155,45 @@ export default {
       document.chronoForm.startstop.onclick = this.chronoContinue
       document.chronoForm.reset.onclick = this.chronoStopReset
       clearTimeout(this.timerID)
+    },
+
+    codeJeu () {
+      var step = 1
+      var p1, p2
+      var timer = null
+
+      document.addEventListener('click', function (e) {
+        switch (step) {
+          case 1 : // premier click
+            if (e.target.name === 'cards') {
+              e.target.card.src = e.target.card.srcback
+              p1 = e.target.card.srcback
+              step = 2
+            } break
+          case 2 : // deuxieme click
+            if (e.target.name === 'cards') {
+              e.target.card.src = e.target.card.srcback
+              p2 = e.target.card.srcback
+              step = 3
+            }
+            timer = setTimeout(check, 1700)
+            break
+          case 3 : // comparaison
+            clearTimeout(timer)
+            check()
+            break
+        }
+      })
+
+      function check () {
+        if (p2 === p1) {
+          p1.replaceWith(document.createElement('span'))
+          p2.replaceWith(document.createElement('span'))
+        } else {
+          p1 = p2 = '@/assets/907-4-ducale-dos-bleu.png'
+        }
+        step = 1
+      }
     }
   },
   mounted () {
@@ -160,42 +201,16 @@ export default {
     this.overlayStart()
   },
 
-  CodeJeu () {
-    var step = 1
-    var p1, p2
-    var timer = null
+  melange () {
+    var a = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
+      .map(p => [p, Math.random()])
+      .sort((a, b) => a[1] - b[1])
+      .map(p => p[0])
+    console.log(a)
 
-    document.addEventListener('click', function (e) {
-      switch (step) {
-        case 1 : // premier click
-          if (e.target.name === 'cards') {
-            e.target.card.src = e.target.card.srcback
-            p1 = e.target.card.srcback
-            step = 2
-          } break
-        case 2 : // deuxieme click
-          if (e.target.name === 'cards') {
-            e.target.card.src = e.target.card.srcback
-            p2 = e.target.card.srcback
-            step = 3
-          }
-          timer = setTimeout(check, 1700)
-          break
-        case 3 : // comparaison
-          clearTimeout(timer)
-          check()
-          break
-      }
-    })
-
-    function check () {
-      if (p2 === p1) {
-        p1.replaceWith(document.createElement('span'))
-        p2.replaceWith(document.createElement('span'))
-      } else {
-        p1 = p2 = '@/assets/907-4-ducale-dos-bleu.png'
-      }
-      step = 1
+    var pics = document.getElementsByTagName('img')
+    for (let i = 0; i < pics.length; i++) {
+      pics[i].srcback = '@/imgback/dos' + a[i] + '.png'
     }
   }
 }
