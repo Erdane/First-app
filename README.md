@@ -1,26 +1,8 @@
 # Memory
 
-## Project setup
+## Web site
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-### Start node serveur
-```
-node serveur.js
-```
-or
-```
-nodemon serveur.js
+https://erdane-first-app.glitch.me
 ```
 
 ## Game
