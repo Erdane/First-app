@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "morgan": "^1.9.1",
+    "sudo": "^1.0.3",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
     "vue-flip": "^0.3.0",
