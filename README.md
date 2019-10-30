@@ -46,7 +46,15 @@ Notez lors du lancement du jeu, l'alerte de connection qui affiche avec quel nom
 
 ![Alerte connexion](/public/AlertConnection.png)
 
-(METTRE UN OVERLAY POUR COMMENCER)
+Une fois connecté, le jeu se lance automatiquement.
+Un overlay vous indiquera le temps restant avant le début de la partie
+
+[!Overlay](public/Overlay.png)
+
+Lorsque ce décompte arrive à terme, le chronomètre du jeu se met en marche.
+
+[!Chronometre](public/Chronometre.png)
+
 (PARLER DU JEU)
 
 ### Déconnexion
