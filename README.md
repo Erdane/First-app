@@ -49,11 +49,11 @@ Notez lors du lancement du jeu, l'alerte de connection qui affiche avec quel nom
 Une fois connecté, le jeu se lance automatiquement.
 Un overlay vous indiquera le temps restant avant le début de la partie
 
-[!Overlay](public/Overlay.png)
+![Overlay](public/Overlay.png)
 
 Lorsque ce décompte arrive à terme, le chronomètre du jeu se met en marche.
 
-[!Chronometre](public/Chronometre.png)
+![Chronometre](public/Chronometre.png)
 
 (PARLER DU JEU)
 
