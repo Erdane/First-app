@@ -18,6 +18,8 @@ app.use(cors({
   credentials: true,
   origin: 'http://localhost:8080'
 }))
+const path = require('path')
+app.use(express.static(path.join(__dirname, '/dist')))
 
 // axios.defaults.withCredentials = true,
 app.use(session({
@@ -29,8 +31,7 @@ app.use(session({
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-const path = require('path')
-app.use(express.static(path.join(__dirname, '/dist')))
+
 
 var users = [{
   username: 'admin',
