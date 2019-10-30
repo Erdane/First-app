@@ -37,7 +37,10 @@ Lorsque ce décompte arrive à terme, le chronomètre du jeu se met en marche.
 
 ![Chronometre](public/Chronometre.png)
 
-(PARLER DU JEU)
+Le jeu se compose de paires de cartes portant des illustrations identiques. L'ensemble des cartes est mélangé, puis étalé face.
+À son tour, le joueur retourne deux cartes de son choix. S'il découvre deux cartes identiques, il les ramasse et les conserve. Si les cartes ne sont pas identiques, il les retourne faces cachées à leur emplacement de départ.Et recommence à nouveau .
+
+Le jeu se termine quand toutes les paires de cartes ont été découvertes et ramassées.
 
 ### Déconnexion
 A tout moment vous pouvez vous déconnecter du jeu, à partir du bouton déconnexion
