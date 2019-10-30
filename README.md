@@ -33,7 +33,7 @@ Un overlay vous indiquera le temps restant avant le début de la partie
 
 ![Overlay](public/Overlay.png)
 
-Lorsque ce décompte arrive à terme, le chronomètre du jeu se met en marche.
+Lorsque ce décompte arrive à terme, le chronomètre du jeu se met en marche. (Ici il y a un excès de récursivité que nous n'avons pas pu corriger, donc le chronomètre ne fonctionne pas correctement)
 
 ![Chronometre](public/Chronometre.png)
 
