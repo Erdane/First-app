@@ -1,10 +1,10 @@
 <template v-for="card in cards">
   <v-app>
-    <!-- <form name="chronoForm">
+     <form name="chronoForm">
       <input type="text" name="chronotime" id="chronotime" value="0:00:00:00"/>
       <input type="button" name="startstop" value="start!" @click="chronoStart()"  />
     <input type="button" name="reset" value="reset!" @click="chronoReset()" />
-</form> -->
+</form>
   <v-card
     class="mx-auto"
     max-width="auto"
@@ -19,7 +19,7 @@
           >
             Hide Overlay
           </v-btn> -->
-          <div> <font size="30"> {{decompte}} </font> </div>
+          <div> <font size="3000"> {{decompte}} </font> </div>
         </v-overlay>
        <v-container
       class="pa-2"
