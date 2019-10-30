@@ -3,8 +3,8 @@
      <form name="chronoForm">
       <input type="text" name="chronotime" id="chronotime" value="0:00:00:00"/>
       <input type="button" name="startstop" value="start!" @click="chronoStart()"  />
-    <input type="button" name="reset" value="reset!" @click="chronoReset()" />
-</form>
+      <input type="button" name="reset" value="reset!" @click="chronoReset()" />
+    </form>
   <v-card
     class="mx-auto"
     max-width="auto"
