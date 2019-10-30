@@ -76,18 +76,18 @@ export default {
     overlay: true,
     decompte: 5,
     cards: [
-      { title: 'Pre-fab homes', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
-      { title: 'Favorite road trips', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
-      { title: 'Best airlines', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 2 },
-      { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/nfl_league.jpg'), flex: 2 },
-      { title: 'Pre-fab homes', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
-      { title: 'Favorite road trips', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
-      { title: 'Best airlines', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 2 },
-      { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/nfl_league.jpg'), flex: 2 },
-      { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/logo.png'), flex: 2 },
-      { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/logo.png'), flex: 2 },
-      { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/logo.svg'), flex: 2 },
-      { title: 'NFL', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/assets/logo.svg'), flex: 2 }
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos5.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos1.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos3.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos5.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos4.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos6.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos2.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos4.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos3.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos1.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos2.jpg'), flex: 2 },
+      { title: 'img', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: require('@/imgback/dos6.jpg'), flex: 2 }
     ]
   }),
   methods: {
