@@ -160,10 +160,6 @@ export default {
         password: this.password
       })
       console.log('ajouté !')
-    },
-    rmElement (index) {
-      console.log('index', index)
-      this.todos.splice(index, 1)
     }
   }
 }
