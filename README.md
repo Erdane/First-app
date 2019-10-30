@@ -42,6 +42,8 @@ Le jeu se compose de paires de cartes portant des illustrations identiques. L'en
 
 Le jeu se termine quand toutes les paires de cartes ont été découvertes et ramassées.
 
+![Capture d’écran 2019-10-30 à 23 21 35](https://user-images.githubusercontent.com/46956121/67903763-be582c00-fb6c-11e9-932c-580a2428e702.png)
+
 ### Déconnexion
 A tout moment vous pouvez vous déconnecter du jeu, à partir du bouton déconnexion
 
