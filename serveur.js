@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, '/dist')))
 
 // axios.defaults.withCredentials = true,
 app.use(session({
-  secret: 'blablabla', // changez cette valeur
+  secret: 'lossantos', // changez cette valeur
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // ne changez que si vous avez activé le https
