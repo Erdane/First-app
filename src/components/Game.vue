@@ -60,6 +60,7 @@
 
 <script>
 import VueFlip from 'vue-flip'
+import func from '../../vue-temp/vue-editor-bridge'
 
 export default {
   name: 'App',
@@ -182,15 +183,20 @@ export default {
           break
         case 3 : // comparaison
           clearTimeout(timer)
-          // eslint-disable-next-line no-irregular-whitespace
-          if (p1.srcback === p2.srcback) {
-            p1.replaceWith(document.createElement('span'))
-            p2.replaceWith(document.createElement('span'))
-          }
-
+          check()
           break
       }
     })
+
+    function check () {
+      if (p2 === p1) {
+        p1.replaceWith(document.createElement('span'))
+        p2.replaceWith(document.createElement('span'))
+      } else {
+        p1 = p2 = '@/assets/907-4-ducale-dos-bleu.png'
+      }
+      step = 1
+    }
   }
 }
 </script>
