@@ -104,7 +104,7 @@ export default {
     password: '',
     todos: [],
     reponse: '',
-    url: 'http://localhost:4000',
+    url: '',//http://localhost:4000
     snackbar: true,
     text: '',
     rules: {
