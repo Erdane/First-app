@@ -1,4 +1,3 @@
- <!--<template>-->
 <template v-for="card in cards">
   <v-app>
     <!-- <form name="chronoForm">
@@ -10,10 +9,23 @@
     class="mx-auto"
     max-width="auto"
   >
+        <v-overlay
+          :absolute="absolute"
+          :value="overlay"
+        >
+          <!-- <v-btn
+            color="success"
+            @click="overlay = false"
+          >
+            Hide Overlay
+          </v-btn> -->
+          <div> <font size="30"> {{decompte}} </font> </div>
+        </v-overlay>
        <v-container
       class="pa-2"
       fluid
     >
+
       <v-row>
         <template v-for="card in cards">
         <v-col
@@ -35,10 +47,12 @@
                   gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
           aspect-ratio="1.7"></v-img>
           </div>
+
       </vue-flip>
         </v-col>
         </template>
       </v-row>
+
     </v-container>
   </v-card>
 </v-app>
@@ -58,6 +72,9 @@ export default {
     end: 0,
     diff: 0,
     timerID: 0,
+    absolute: true,
+    overlay: true,
+    decompte: 5,
     cards: [
       { title: 'Pre-fab homes', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
       { title: 'Favorite road trips', src: require('@/assets/907-4-ducale-dos-bleu.png'), srcback: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
@@ -74,6 +91,17 @@ export default {
     ]
   }),
   methods: {
+    overlayStart () {
+      console.log('overlay 1 : ' + this.overlay)
+      setTimeout(() => {
+        this.overlay = false
+        console.log('overlay 2 : ' + this.overlay)
+        this.chronoStart()
+      }, 5000)
+      setInterval(() => {
+        this.decompte--
+      }, 1000)
+    },
     chrono () {
       this.end = new Date()
       this.diff = this.end - this.start
@@ -127,7 +155,8 @@ export default {
     }
   },
   mounted () {
-    this.chronoStart()
+    // this.chronoStart()
+    this.overlayStart()
   }
 }
 </script>
