@@ -157,6 +157,40 @@ export default {
   mounted () {
     // this.chronoStart()
     this.overlayStart()
+  },
+
+  CodeJeu () {
+    var step = 1
+    var p1, p2
+    var timer = null
+
+    document.addEventListener('click', function (e) {
+      switch (step) {
+        case 1 : // premier click
+          if (e.target.name === 'cards') {
+            e.target.card.src = e.target.card.srcback
+            p1 = e.target.card.srcback
+            step = 2
+          } break
+        case 2 : // deuxieme click
+          if (e.target.name === 'cards') {
+            e.target.card.src = e.target.card.srcback
+            p2 = e.target.card.srcback
+            step = 3
+          }
+          timer = setTimeout(check, 1700)
+          break
+        case 3 : // comparaison
+          clearTimeout(timer)
+          // eslint-disable-next-line no-irregular-whitespace
+          if (p1.srcback === p2.srcback) {
+            p1.replaceWith(document.createElement('span'))
+            p2.replaceWith(document.createElement('span'))
+          }
+
+          break
+      }
+    })
   }
 }
 </script>
