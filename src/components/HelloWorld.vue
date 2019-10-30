@@ -104,7 +104,8 @@ export default {
     password: '',
     todos: [],
     reponse: '',
-    url: '',//http://localhost:4000
+    url: '', // http://localhost:4000
+
     snackbar: true,
     text: '',
     rules: {
@@ -160,10 +161,6 @@ export default {
         password: this.password
       })
       console.log('ajouté !')
-    },
-    rmElement (index) {
-      console.log('index', index)
-      this.todos.splice(index, 1)
     }
   }
 }
